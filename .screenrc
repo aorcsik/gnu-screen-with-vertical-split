@@ -1,0 +1,47 @@
+startup_message off
+
+# Bind F11 and F12 (NOT F1 and F2) to previous and next screen window
+bindkey -k F1 prev
+bindkey -k F2 next
+
+bind q quit # previously flow control XON
+
+caption always "%?%F%{+b WK}(focus) %?%n %t %h "
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.kW}%-w%{.BW}%n %t%{-}%+w %=%{..K} $LOGNAME@%H %{..B} %Y-%m-%d %c "
+
+# Window list at the bottom.
+# hardstatus on
+# hardstatus alwayslastline
+# hardstatus string "%{.KW}%-w%{.BW}%n %t%{-}%+w %=%{..w} %H %{..W} %m/%d %c "
+
+# 12h time: %C%a or %s%A
+# 24h time: %c
+# day: %d, weekday: %D, month: %m, month name: %M, 
+# hostname: %H
+# current load: %l
+# window number %n
+# windows: %-w %n %t %+w
+# pad to windows width: %=
+
+# From Stephen Shirley
+# Don't block command output if the terminal stops responding
+# (like if the ssh connection times out for example).
+nonblock on
+
+# Allow editors etc. to restore display on exit
+# rather than leaving existing text in place
+altscreen on
+
+# Enable 256-color mode when screen is started with TERM=xterm-256color
+# Taken from: http://frexx.de/xterm-256-notes/
+#
+# Note that TERM != "xterm-256color" within a screen window. Rather it is
+# "screen" or "screen-bce"
+# 
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
